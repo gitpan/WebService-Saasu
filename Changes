@@ -1,4 +1,7 @@
 Revision history for WebService-Saasu
 
+0.2     2013-03-04T12:30:40
+        fixed typo in list_items command
+
 0.1     2013-02-28T17:03:32
         first version
