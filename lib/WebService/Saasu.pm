@@ -1,21 +1,15 @@
 package WebService::Saasu;
 
-use 5.10.0;
+use 5.010;
 use Mouse;
+
+# ABSTRACT: WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
+
+our $VERSION = '0.3'; # VERSION
+
 use XML::Simple;
 with 'Web::API';
 
-=head1 NAME
-
-WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
-
-=head1 VERSION
-
-Version 0.2
-
-=cut
-
-our $VERSION = '0.2';
 
 has 'commands' => (
     is      => 'rw',
@@ -303,29 +297,11 @@ has 'commands' => (
     },
 );
 
-=head1 SYNOPSIS
-
-Please refer to the API documentation at L<http://mandrillapp.com/api/docs/index.html>
-
-    use WebService::Saasu;
-
-    my $foo = WebService::Saasu->new();
-    ...
-
-=head1 SUBROUTINES/METHODS
-
-=cut
-
 sub commands {
     my ($self) = @_;
     return $self->commands;
 }
 
-=head2 BUILD
-
-basic configuration for the client API happens usually in the BUILD method when using Web::API
-
-=cut
 
 sub BUILD {
     my ($self) = @_;
@@ -351,15 +327,39 @@ sub BUILD {
     return $self;
 }
 
-=head1 AUTHOR
 
-Tobias Kirschstein, C<< <lev at cpan.org> >>
+1;    # End of WebService::Saasu
+
+__END__
+
+=pod
+
+=head1 NAME
+
+WebService::Saasu - WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
+
+=head1 VERSION
+
+version 0.3
+
+=head1 SYNOPSIS
+
+Please refer to the API documentation at L<http://mandrillapp.com/api/docs/index.html>
+
+    use WebService::Saasu;
+
+    my $foo = WebService::Saasu->new();
+    ...
+
+=head1 SUBROUTINES/METHODS
+
+=head2 BUILD
+
+basic configuration for the client API happens usually in the BUILD method when using Web::API
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-webservice-saasu at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WebService-Saasu>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests on GitHub's issue tracker L<https://github.com/nupfel/WebService-Saasu/issues>.
 
 =head1 SUPPORT
 
@@ -367,44 +367,46 @@ You can find documentation for this module with the perldoc command.
 
     perldoc WebService::Saasu
 
-
 You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * GitHub repository
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WebService-Saasu>
+L<https://github.com/nupfel/WebService-Saasu>
+
+=item * MetaCPAN
+
+L<https://metacpan.org/module/WebService::Saasu>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/WebService-Saasu>
+L<http://annocpan.org/dist/WebService::Saasu>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/WebService-Saasu>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WebService-Saasu/>
+L<http://cpanratings.perl.org/d/WebService::Saasu>
 
 =back
 
-
 =head1 ACKNOWLEDGEMENTS
 
+=over 4
 
-=head1 LICENSE AND COPYRIGHT
+=item * Lenz Gschwendtner (@norbu09), for being an awesome mentor and friend.
 
-Copyright 2013 Tobias Kirschstein.
+=back
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+=head1 AUTHOR
 
-See http://dev.perl.org/licenses/ for more information.
+Tobias Kirschstein <lev@cpan.org>
 
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2013 by Tobias Kirschstein.
+
+This is free software, licensed under:
+
+  The (three-clause) BSD License
 
 =cut
-
-1;    # End of WebService::Saasu

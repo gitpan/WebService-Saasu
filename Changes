@@ -1,7 +1,79 @@
-Revision history for WebService-Saasu
+==================================================
+Changes from 2012-05-02 00:00:00 +0000 to present.
+==================================================
 
-0.2     2013-03-04T12:30:40
-        fixed typo in list_items command
+----------------------------------------
+version 0.3 at 2013-05-02 17:10:17 +0000
+----------------------------------------
 
-0.1     2013-02-28T17:03:32
-        first version
+  Change: eaf5e21e09de5a48d98436680d90ee27d2622363
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-05-03 05:10:01 +0000
+
+    fixed perl version number 
+
+  Change: 743bcca0256c5cc2b9e0e5ea6c6aa1b830e8e0d2
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-05-03 05:08:33 +0000
+
+    migrated to dist::zilla 
+
+----------------------------------------
+version 0.2 at 2013-03-03 23:31:27 +0000
+----------------------------------------
+
+  Change: 177d94483b4f5f47ac7ba9b24add7018b236918a
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-03-04 12:31:27 +0000
+
+    bump version for fix 
+
+----------------------------------------
+version 0.1 at 2013-03-03 23:29:23 +0000
+----------------------------------------
+
+  Change: d3669caa0b53650000ea6233e876f4d1a2869988
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-03-04 12:29:23 +0000
+
+    Checking in changes prior to tagging of version 0.1.
+
+    Changelog diff is: 
+
+  Change: 183178e2a8d8439dccefd9f83f9169292222bcdc
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-03-04 12:27:51 +0000
+
+    Checking in changes prior to tagging of version 0.1.
+
+    Changelog diff is: 
+
+  Change: 9e1c5e2c072c40cdaf902d890430af5834dc9403
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-03-04 12:27:28 +0000
+
+    fixed typo in list_items command 
+
+  Change: 2722f0c912f764e49f3cf38ba424a8a06f58eb47
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-02-28 17:08:12 +0000
+
+    Checking in changes prior to tagging of version 0.1.
+
+    Changelog diff is: 
+
+  Change: 1efde02106b040af0fa0c19f91865b672d4e3d9b
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-02-28 17:04:19 +0000
+
+    set initial version 
+
+  Change: 152beb886add0f65c846af6d9da4c5496b1374f0
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-02-28 17:03:01 +0000
+
+    initial import 
+
+================
+End of releases.
+================
