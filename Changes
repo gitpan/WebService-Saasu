@@ -1,9 +1,31 @@
 ==================================================
-Changes from 2012-05-02 00:00:00 +0000 to present.
+Changes from 2012-05-30 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------
-version 0.3 at 2013-05-02 17:10:17 +0000
+version 0.4 at 2013-05-30 04:23:10 +0000
+----------------------------------------
+
+  Change: 250180fe683566686821609205ac11772eb4a8ba
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-05-30 16:22:34 +0000
+
+    extended command list by activities and reports 
+
+  Change: 74615df7314e5d1efc0277612fdd2bb772728085
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-05-03 05:25:29 +0000
+
+    fixed initial versioning 
+
+  Change: 25ba030cc9d472ce6c420f33df5246b9ea424abf
+  Author: Tobias Kirschstein <lev@ideegeo.com>
+  Date : 2013-05-03 05:11:16 +0000
+
+    added README.pod for github 
+
+----------------------------------------
+version 0.3 at 2013-05-02 17:10:01 +0000
 ----------------------------------------
 
   Change: eaf5e21e09de5a48d98436680d90ee27d2622363

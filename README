@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution WebService-Saasu,
-version 0.3:
+version 0.4:
 
   WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
 

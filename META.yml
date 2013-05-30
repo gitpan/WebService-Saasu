@@ -21,4 +21,4 @@ resources:
   bugtracker: https://github.com/nupfel/WebService-Saasu/issues
   homepage: https://github.com/nupfel/WebService-Saasu/wiki
   repository: git://github.com/nupfel/WebService-Saasu.git
-version: 0.3
+version: 0.4
