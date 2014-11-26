@@ -1,11 +1,11 @@
 package WebService::Saasu;
 
-use 5.010;
+use Modern::Perl;
 use Mouse;
 
 # ABSTRACT: WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
 
-our $VERSION = '0.4'; # VERSION
+our $VERSION = '0.5'; # VERSION
 
 use XML::Simple;
 with 'Web::API';
@@ -22,7 +22,7 @@ has 'commands' => (
             },
             get_invoice => {
                 path      => 'Invoice',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_invoice => {
                 path    => 'Tasks',
@@ -36,7 +36,7 @@ has 'commands' => (
                 method    => 'POST',
                 wrapper   => [ 'tasks', 'updateInvoice', 'invoice' ],
                 mandatory => [
-                    'id',              'lastUpdatedUid',
+                    'uid',              'lastUpdatedUid',
                     'transactionType', 'date',
                     'layout',          'invoiceItems'
                 ],
@@ -44,7 +44,7 @@ has 'commands' => (
             delete_invoice => {
                 path      => 'Invoice',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # payments
@@ -54,7 +54,7 @@ has 'commands' => (
             },
             get_payment => {
                 path      => 'InvoicePayment',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_payment => {
                 path   => 'Tasks',
@@ -70,7 +70,7 @@ has 'commands' => (
                 wrapper =>
                     [ 'tasks', 'updateInvoicePayment', 'invoicePayment' ],
                 mandatory => [
-                    'id',              'lastUpdatedUid',
+                    'uid',              'lastUpdatedUid',
                     'transactionType', 'date',
                     'invoicePaymentItems'
                 ],
@@ -78,14 +78,14 @@ has 'commands' => (
             delete_payment => {
                 path      => 'InvoicePayment',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # contacts
             list_contacts => { path => 'ContactList' },
             get_contact   => {
                 path      => 'Contact',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_contact => {
                 path    => 'Tasks',
@@ -96,19 +96,19 @@ has 'commands' => (
                 path    => 'Tasks',
                 method  => 'POST',
                 wrapper => [ 'tasks', 'updateContact', 'contact' ],
-                mandatory => [ 'id', 'lastUpdatedUid' ],
+                mandatory => [ 'uid', 'lastUpdatedUid' ],
             },
             delete_contact => {
                 path      => 'Contact',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # chart of accounts
             list_accounts => { path => 'TransactionCategoryList' },
             get_account   => {
                 path      => 'TransactionCategory',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_account => {
                 path    => 'Tasks',
@@ -126,19 +126,19 @@ has 'commands' => (
                     'tasks', 'updateTransactionCategory',
                     'transactionCategory'
                 ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'type', 'name' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'type', 'name' ],
             },
             delete_account => {
                 path      => 'TransactionCategory',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # bank accounts
             list_bank_accounts => { path => 'BankAccountList' },
             get_bank_account   => {
                 path      => 'BankAccount',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_bank_account => {
                 path    => 'Tasks',
@@ -150,19 +150,19 @@ has 'commands' => (
                 path      => 'Tasks',
                 method    => 'POST',
                 wrapper   => [ 'tasks', 'updateBankAccount', 'bankAccount' ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'type', 'displayName' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'type', 'displayName' ],
             },
             delete_bank_account => {
                 path      => 'BankAccount',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # inventory items
             list_items => { path => 'FullInventoryItemList' },
             get_item   => {
                 path      => 'InventoryItem',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_item => {
                 path    => 'Tasks',
@@ -174,19 +174,19 @@ has 'commands' => (
                 path    => 'Tasks',
                 method  => 'POST',
                 wrapper => [ 'tasks', 'updateInventoryItem', 'inventoryItem' ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'code', 'description' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'code', 'description' ],
             },
             delete_item => {
                 path      => 'InventoryItem',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # inventory adjustments
             list_adjustments => { path => 'InventoryAdjustmentList' },
             get_adjustment   => {
                 path      => 'InventoryAdjustment',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_adjustment => {
                 path    => 'Tasks',
@@ -204,19 +204,19 @@ has 'commands' => (
                     'tasks', 'updateInventoryAdjustment',
                     'InventoryAdjustment'
                 ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'items' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'items' ],
             },
             delete_adjustment => {
                 path      => 'InventoryAdjustment',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # combo items
             list_comboitems => { path => 'FullComboItemList' },
             get_comboitem   => {
                 path      => 'ComboItem',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_comboitem => {
                 path      => 'Tasks',
@@ -229,19 +229,19 @@ has 'commands' => (
                 method  => 'POST',
                 wrapper => [ 'tasks', 'updateComboItem', 'comboItem' ],
                 mandatory =>
-                    [ 'id', 'lastUpdatedUid', 'code', 'description', 'items' ],
+                    [ 'uid', 'lastUpdatedUid', 'code', 'description', 'items' ],
             },
             delete_comboitem => {
                 path      => 'ComboItem',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # inventory transfers
             list_transfers => { path => 'InventoryTransferList' },
             get_transfer   => {
                 path      => 'InventoryTransfer',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_transfer => {
                 path   => 'Tasks',
@@ -255,19 +255,19 @@ has 'commands' => (
                 method => 'POST',
                 wrapper =>
                     [ 'tasks', 'updateInventoryTransfer', 'inventoryTransfer' ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'items' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'items' ],
             },
             delete_transfer => {
                 path      => 'InventoryTransfer',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # journal
             list_journals => { path => 'JournalList' },
             get_journal   => {
                 path      => 'Journal',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
             create_journal => {
                 path      => 'Tasks',
@@ -279,12 +279,12 @@ has 'commands' => (
                 path      => 'Tasks',
                 method    => 'POST',
                 wrapper   => [ 'tasks', 'updateJournal', 'journal' ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'journalItems' ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'journalItems' ],
             },
             delete_journal => {
                 path      => 'Journal',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # activities
@@ -294,18 +294,18 @@ has 'commands' => (
                 method  => 'POST',
                 path    => 'Tasks',
                 wrapper => [ 'tasks', 'insertActivity', 'activity' ],
-                mandatory => [ 'type', 'title', ],
+                mandatory => [ 'type', 'title' ],
             },
             update_activity => {
                 method    => 'POST',
                 path      => 'Tasks',
                 wrapper   => [ 'tasks', 'updateActivity', 'activity' ],
-                mandatory => [ 'id', 'lastUpdatedUid', 'type', 'title', ],
+                mandatory => [ 'uid', 'lastUpdatedUid', 'type', 'title' ],
             },
             delete_activity => {
                 path      => 'Activity',
                 method    => 'DELETE',
-                mandatory => ['id'],
+                mandatory => ['uid'],
             },
 
             # reports
@@ -341,9 +341,9 @@ sub BUILD {
     $self->base_url('https://secure.saasu.com/webservices/rest/r1');
     $self->auth_type('get_params');
     $self->mapping({
-            user    => 'FileUid',
-            api_key => 'wsaccesskey',
-            id      => 'uid',
+        user    => 'FileUid',
+        api_key => 'wsaccesskey',
+        id      => 'uid',
     });
     $self->xml(
         XML::Simple->new(
@@ -353,6 +353,7 @@ sub BUILD {
             KeyAttr    => ['layout'],
         ),
     );
+    $self->retry_http_codes([500]);
 
     return $self;
 }
@@ -364,13 +365,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 WebService::Saasu - WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
 
 =head1 VERSION
 
-version 0.4
+version 0.5
 
 =head1 SYNOPSIS
 
