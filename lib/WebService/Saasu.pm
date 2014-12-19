@@ -5,7 +5,7 @@ use Mouse;
 
 # ABSTRACT: WebService::Saasu - an interface to saasu.com's RESTful accounting API using Web::API
 
-our $VERSION = '0.5'; # VERSION
+our $VERSION = '0.6'; # VERSION
 
 use XML::Simple;
 with 'Web::API';
@@ -36,7 +36,7 @@ has 'commands' => (
                 method    => 'POST',
                 wrapper   => [ 'tasks', 'updateInvoice', 'invoice' ],
                 mandatory => [
-                    'uid',              'lastUpdatedUid',
+                    'uid',             'lastUpdatedUid',
                     'transactionType', 'date',
                     'layout',          'invoiceItems'
                 ],
@@ -70,7 +70,7 @@ has 'commands' => (
                 wrapper =>
                     [ 'tasks', 'updateInvoicePayment', 'invoicePayment' ],
                 mandatory => [
-                    'uid',              'lastUpdatedUid',
+                    'uid',             'lastUpdatedUid',
                     'transactionType', 'date',
                     'invoicePaymentItems'
                 ],
@@ -353,7 +353,9 @@ sub BUILD {
             KeyAttr    => ['layout'],
         ),
     );
+    $self->error_keys(['invoiceResponse.errors.error.message']);
     $self->retry_http_codes([500]);
+    $self->retry_errors([qr/The auto-generated invoice number \([^)]+\) has already been used/]);
 
     return $self;
 }
@@ -373,7 +375,7 @@ WebService::Saasu - WebService::Saasu - an interface to saasu.com's RESTful acco
 
 =head1 VERSION
 
-version 0.5
+version 0.6
 
 =head1 SYNOPSIS
 

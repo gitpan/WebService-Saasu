@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     "Web::API" => 0,
     "XML::Simple" => 0
   },
-  "VERSION" => "0.5",
+  "VERSION" => "0.6",
   "test" => {
     "TESTS" => "t/*.t"
   }
